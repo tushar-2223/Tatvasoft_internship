@@ -2,24 +2,22 @@ import React from 'react'
 import tatvasoftlogo from '../assets/Tatvasoft-Logo.jpg'
 import { Link } from 'react-router-dom'
 import { HiShoppingCart } from "react-icons/hi";
-import Avatar from '@mui/material/Avatar';
-import { deepOrange, deepPurple } from '@mui/material/colors';
 
 const UpperNavbar = () => {
     return (
         <>
             {/* top bar */}
-            <div className="topbar">
-                Get <span className="heighlitetext">20% Off</span> on your First order
+            <div className="text-center p-[3px] bg-[#f14D54] text-white">
+                Get <span className="text-black font-bold bg-slate-300 p-[2px]  rounded-lg">20% Off</span> on your First order
             </div>
 
-            <div className="Uppernav">
+            <div className="flex justify-between items-center px-[40px]">
                 <Link to="/">
                     <img src={tatvasoftlogo} alt="Logo" className="h-[100px]" />
                 </Link>
 
 
-                <div className="Auth gap-2">
+                <div className="flex text-black bg-[#f5f5f5] gap-2">
                     <Link to="/login" className='authbtn'>Login</Link>
                     <hr />
                     <Link to="/register" className='authbtn'>Register</Link>
@@ -29,10 +27,7 @@ const UpperNavbar = () => {
                         <HiShoppingCart color='red' size={20}/>
                         <h4>0</h4>
                         <h4>Cart</h4>
-                    </Link>
-
-                    <Link to="/"><Avatar sx={{ bgcolor: deepOrange[500] }}>T</Avatar></Link>
-                    
+                    </Link>  
                 </div>
             </div>
         </>

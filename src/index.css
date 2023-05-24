@@ -10,36 +10,6 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* local style */
-.heighlitetext{
-  color: black;
-  font-weight: bold;
-  background-color: aliceblue;
-  padding: 2px;
-  border-radius:2px;
-}
-
-/* topbar */
-.topbar{
-  background-color: #f14D54;
-  color:white;
-  text-align: center;
-  padding: 2px;
-}
-
-.Uppernav{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 40px;
-}
-
-.Auth{
-  display: flex;
-  color: black;
-  background-color:whitesmoke;
-}
-
 .authbtn{
   padding: 5px 10px;
   text-decoration: none;
@@ -59,20 +29,5 @@
   gap: 5px;
 }
 
-/* navbar */
 
-nav{
-  display:flex;
-  justify-content: center;
-  background-color:rgba(149, 149, 149, 0.293);
-  padding: 15px;
-  gap: 10px;
-}
-
-.search{
-    width: 422px;
-    color: black;
-    outline: none;
-    padding: 3px 10px;
-}
 
