@@ -1,8 +1,12 @@
 import { createContext, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 
 const Contextpage = createContext();
 
-export function ContextProvider({ children }) { 
+export function ContextProvider({ children }) {
+
+    const navigate = useNavigate();
 
     const [data, setData] = useState(0);
 
@@ -10,7 +14,7 @@ export function ContextProvider({ children }) {
 
         <Contextpage.Provider value={{
             data,
-            setData
+            setData,
         }}>
             {children}
         </Contextpage.Provider>

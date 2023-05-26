@@ -1,29 +1,55 @@
 import React, { useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
-import { Formik, useFormik } from "formik";
+import { Link , useNavigate } from 'react-router-dom';
+import { useFormik } from "formik";
 import { RegisterSchema } from "../schema";
+import { toast } from 'react-toastify';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const initialValues = {
     firstname: "",
     lastname: "",
     email: "",
+    roles: "",
     password: "",
     cpassword: ""
 };
 
 const Register = () => {
 
+    const navigate = useNavigate();
     // <=========== form handling using formik =================>
 
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
         useFormik({
             initialValues,
             validationSchema: RegisterSchema,
-            onSubmit: (values, action) => {
-                console.log(values);
+            onSubmit: async(values, action) => {
+
+                const res = await fetch("http://localhost:5000/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body:  JSON.stringify(values)
+                });
+
+                const data = await res.json();
+
+                if (data.status === 422 || !data) {
+                    toast.error("Invalid Registration");
+                } else {
+                    toast.success("Register successfully")
+                    navigate("/login");
+                }
+
                 action.resetForm();
+
+                // console.log(values);
             },
         });
     console.log(errors);
@@ -56,7 +82,7 @@ const Register = () => {
             <h1 className="text-2xl font-extrabold text-center p-5">Create an Account</h1>
 
             {/* <====== SignUp Form ===========> */}
-            <form onSubmit={handleSubmit} className='flex justify-center items-center gap-5'>
+            <form method='POST' onSubmit={handleSubmit} className='flex justify-center items-center gap-5'>
                 <div className='border-2 rounded-xl p-5 flex flex-col gap-5 shadow-lg'>
                     <div className='flex gap-5 flex-wrap'>
                         <div className='w-80'>
@@ -67,7 +93,7 @@ const Register = () => {
                                 variant="outlined"
                                 name='firstname'
                                 className='w-full'
-                                autocomplete="off"
+                                autoComplete="off"
                                 value={values.firstname}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -113,6 +139,24 @@ const Register = () => {
                         ) : null}
                     </div>
 
+                    <FormControl >
+                        <InputLabel id="demo-simple-select-autowidth-label">Role</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-autowidth-label"
+                            id="demo-simple-select-autowidth"
+                            autoWidth
+                            label="roles"
+                            value={values.roles}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            name='roles'
+                        >
+                            <MenuItem value="BUYER">Buyer</MenuItem>
+                            <MenuItem value="SELLER">Seller</MenuItem>
+                        </Select>
+                    </FormControl>
+
+
                     <div className='flex gap-5 flex-wrap'>
                         <div className='w-80'>
                             <TextField
@@ -149,7 +193,7 @@ const Register = () => {
                         </div>
                     </div>
 
-                    <Button type='submit' variant="contained">Submit</Button>
+                    <Button type='submit' variant="contained">Sign Up</Button>
 
                     <div className='text-center font-semibold'>Already have an account <Link to="/login" className="text-blue-500">sign in</Link></div>
                 </div>

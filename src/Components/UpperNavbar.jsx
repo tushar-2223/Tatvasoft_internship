@@ -2,8 +2,11 @@ import React from 'react'
 import tatvasoftlogo from '../assets/Tatvasoft-Logo.jpg'
 import { Link } from 'react-router-dom'
 import { HiShoppingCart } from "react-icons/hi";
+import Contextpage from '../ContextPage';
 
 const UpperNavbar = () => {
+
+
     return (
         <>
             {/* top bar */}
@@ -21,6 +24,8 @@ const UpperNavbar = () => {
                     <Link to="/login" className='authbtn'>Login</Link>
                     <hr />
                     <Link to="/register" className='authbtn'>Register</Link>
+                    <Link to="/seller" className='authbtn'>Sell Product</Link>
+                   
 
                     {/* cart */}
                     <Link className='authbtn cart'>
