@@ -1,7 +1,7 @@
 import React, { useState ,useContext,useEffect} from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from "formik";
 import { RegisterSchema } from "../schema";
 import { toast } from 'react-toastify';
@@ -12,33 +12,28 @@ import Select from '@mui/material/Select';
 import axios from 'axios';
 import Contextpage from '../ContextPage';
 
-const initialValues = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    roleId: 3,
-    password: ""
-};
-
-// roleId
-// 1 : admin,
-// 2 : Seller,
-// 3 : buyer
-
-const Register = () => {
-    const { LoadinContainer } = useContext(Contextpage)
+const UpdateProfile = () => {
+    const { LoadinContainer , user} = useContext(Contextpage)
 
     const navigate = useNavigate();
     // <=========== form handling using formik =================>
+    const [initialValues, setInitialValues] = useState({
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        roleId: 3,
+        role : user.role,
+        password: ""
+    });
 
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
         useFormik({
             initialValues,
             validationSchema: RegisterSchema,
             onSubmit: (values, action) => {
-
                 var config = {
-                    method: 'post',
+                    method: 'put',
                     maxBodyLength: Infinity,
                     url: 'https://book-e-sell-node-api.vercel.app/api/user',
                     headers: { "Content-Type": "application/json" },
@@ -47,11 +42,11 @@ const Register = () => {
 
                 axios(config)
                     .then(function () {
-                        toast.success("Register successfully");
-                        navigate("/login");
+                        toast.success("Profile Updated successfully");
+                        navigate("/");
                     })
                     .catch(function () {
-                        toast.error("Invalid Registration");
+                        toast.error("Profile updated Unsuccessfully");
                     });
 
                 action.resetForm();
@@ -66,32 +61,10 @@ const Register = () => {
     
 
 
-    // <========== before Formik =============>
-
-    // const [user, setUser] = useState({
-    //     firstname: "", lastname: "", email: "", password: "", cpassword: ""
-    // });
-
-    // let name, value;
-
-    // const handleInputs = (e) => {
-    //     name = e.target.name;
-    //     value = e.target.value;
-
-    //     setUser({ ...user, [name]: value });
-    // }
-
-
-    // const SubmitForm = () => {
-    //     console.log(user);
-
-    // }
-
-
     return (
         <div className="py-8">
             <div className="flex justify-center flex-col items-center p-4">
-                <h1 className="text-4xl font-bold text-center p-3">Login or Create an Account</h1>
+                <h1 className="text-4xl font-bold text-center p-3">Update Profile</h1>
                 <div className="w-40 h-1 bg-red-400 rounded-full"></div>
             </div>
 
@@ -174,7 +147,7 @@ const Register = () => {
                         <div className='w-80'>
                             <TextField
                                 id="outlined-basic"
-                                label="Password"
+                                label="New Password"
                                 variant="outlined"
                                 name='password'
                                 className='w-full'
@@ -203,9 +176,7 @@ const Register = () => {
                         </div>
                     </div>
 
-                    <Button type='submit' variant="contained">Sign Up</Button>
-
-                    <div className='text-center font-semibold'>Already have an account <Link to="/login" className="text-red-400">sign in</Link></div>
+                    <Button type='submit' variant="contained">Save</Button>
                 </div>
             </form>
 
@@ -213,4 +184,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default UpdateProfile
