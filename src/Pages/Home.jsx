@@ -74,7 +74,7 @@ const Home = () => {
               </div>
               <h3 className="mt-4 text-gray-700 font-bold text-md">{product.name}</h3>
               <h1 className="text-blue-500">{product.category}</h1>
-              <p className="mt-1 text-lg font-medium text-gray-900">$ {product.price}</p>
+              <p className="mt-1 text-lg font-medium text-gray-900">Rs. {product.price}</p>
 
               <button className='bg-red-200 w-full p-2 my-2 rounded-lg'>Add to Cart</button>
             </div>

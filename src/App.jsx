@@ -13,6 +13,7 @@ import Contextpage from './ContextPage';
 import UpdateProfile from "./Pages/UpdateProfile"
 import Error from "./Pages/Error"
 import AddBooks from "./Pages/AddBooks"
+import EditBooks from "./Pages/EditBooks"
 
 function App() {
 
@@ -44,7 +45,8 @@ function App() {
         <Route path="register" element={!user ? <Register /> : <Navigate to="/"/>} />
         <Route path="books" element={<Books />} />
         <Route path="updateprofile" element={user ? <UpdateProfile /> : <Navigate to="/" />} />
-        <Route path="addbook" element={<AddBooks/>}/>
+        <Route path="addbook" element={<AddBooks />} />
+        <Route path="editbook/:id" element={<EditBooks/>} />
         <Route path="*" element={<Error />} />
       </Routes>
 

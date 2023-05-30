@@ -11,18 +11,19 @@ export function ContextProvider({ children }) {
     const [logindata, setLogindata] = useState({});
     const [user, setUser] = useState('');
     const [loading, setLoading] = useState(false);
-   
+    const [category, setCategory] = useState([])
+
     const getData = () => {
         var config = {
             method: 'get',
             maxBodyLength: Infinity,
             url: 'https://book-e-sell-node-api.vercel.app/api/user/all',
-            headers: {"Content-Type": "application/json" }
+            headers: { "Content-Type": "application/json" }
         };
-       
+
         axios(config)
             .then(function (response) {
-                const data = JSON.stringify(response.data.result);
+                const data = response.data.result;
                 const filterdatavalue = filterData(data)
                 // setUser(filterdata);
                 // const userdata = LocalStorageFun(filterdatavalue);
@@ -35,8 +36,7 @@ export function ContextProvider({ children }) {
     };
 
     const filterData = (data) => {
-        const parsedata = JSON.parse(data);
-        const filterdata = parsedata.find(value => value.email == logindata.email); 
+        const filterdata = data.find(value => value.email == logindata.email);
         // console.log(filterdata);
         return filterdata;
     }
@@ -50,13 +50,33 @@ export function ContextProvider({ children }) {
         setTimeout(() => setLoading(false), 1000);
     }
 
+    const getCategory = () => {
+        var config = {
+            method: 'get',
+            maxBodyLength: Infinity,
+            url: 'https://book-e-sell-node-api.vercel.app/api/category/all',
+            headers: { "Content-Type": "application/json" }
+        };
+
+        axios(config)
+            .then(function (response) {
+                setCategory(response.data.result);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
     useEffect(() => {
         if (logindata.email) {
             getData();
         }
 
         getlocalstoragedata();
+        getCategory();
     }, [logindata.email]);
+
+   
 
     return (
 
@@ -70,7 +90,9 @@ export function ContextProvider({ children }) {
             getData,
             loading,
             setLoading,
-            LoadinContainer
+            LoadinContainer,
+            category,
+            setCategory
         }}>
             {children}
         </Contextpage.Provider>

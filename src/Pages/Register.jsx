@@ -55,8 +55,7 @@ const Register = () => {
                     });
 
                 action.resetForm();
-
-            },
+            }
         });
     console.log(errors);
 

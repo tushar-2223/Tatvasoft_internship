@@ -3,6 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Contextpage from '../ContextPage';
+import { toast } from 'react-toastify';
 
 function Books() {
 
@@ -15,7 +16,7 @@ function Books() {
     var config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: 'https://book-e-sell-node-api.vercel.app/api/book/all',
+      url: `https://book-e-sell-node-api.vercel.app/api/book/all`,
       headers: { "Content-Type": "application/json" }
     };
 
@@ -27,6 +28,10 @@ function Books() {
       .catch(function (error) {
         console.log(error);
       });
+  }
+
+  const deleteBook = (bookid) => {
+    toast.success(`${bookid} Book Delete successfully`)
   }
 
   useEffect(() => {
@@ -42,7 +47,7 @@ function Books() {
     {
       field: 'name',
       headerName: 'Book Name',
-      width: 450
+      width: 450,
     },
     {
       field: 'price',
@@ -59,15 +64,15 @@ function Books() {
       field: "edit",
       headerName: "Edit",
       width: 200,
-      renderCell: () => (
+      renderCell: (row) => (
         <>
-          <Link to="/" className='bg-green-500/60 px-5 py-2 font-semibold hover:bg-green-500/40 rounded-lg mx-2'>
+          <Link to={`/editbook/${row.id}`} className='bg-green-500/60 px-5 py-2 font-semibold hover:bg-green-500/40 rounded-lg mx-2'>
             Edit
           </Link>
 
-          <Link to="/" className='bg-red-500/60 px-5 py-2 font-semibold hover:bg-red-500/40 rounded-lg mx-2'>
+          <button onClick={() => deleteBook(row.id)} className='bg-red-500/60 px-5 py-2 font-semibold hover:bg-red-500/40 rounded-lg mx-2'>
             Delete
-          </Link>
+          </button>
         </>)
     },
   ];
@@ -80,11 +85,9 @@ function Books() {
         <div className="w-40 h-1 bg-red-400 rounded-full"></div>
       </div>
 
-    
       <div className="flex justify-center items-center flex-col">
-
         <div className="flex">
-           <Link to="/addbook" className='bg-blue-400 p-2 rounded-lg hover:bg-blue-300 font-semibold text-white'>Add Books</Link>
+          <Link to="/addbook" className='bg-blue-400 p-2 rounded-lg hover:bg-blue-300 font-semibold text-white'>Add Books</Link>
         </div>
 
         <div className="w-auto m-10">

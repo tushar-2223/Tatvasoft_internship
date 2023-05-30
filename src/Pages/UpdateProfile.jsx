@@ -22,7 +22,7 @@ const UpdateProfile = () => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
-        roleId: 3,
+        roleId: user.roleId,
         role : user.role,
         password: ""
     });
@@ -69,7 +69,7 @@ const UpdateProfile = () => {
             </div>
 
             {/* <====== SignUp Form ===========> */}
-            <form method='POST' onSubmit={handleSubmit} className='flex justify-center items-center gap-5'>
+            <form method='PUT' onSubmit={handleSubmit} className='flex justify-center items-center gap-5'>
                 <div className='border-2 rounded-xl p-5 flex flex-col gap-5 shadow-lg'>
                     <div className='flex gap-5 flex-wrap'>
                         <div className='w-80'>
