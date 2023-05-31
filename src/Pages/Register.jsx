@@ -163,8 +163,9 @@ const Register = () => {
                             onBlur={handleBlur}
                             name='roleId'
                         >
-                            <MenuItem value="3">Buyer</MenuItem>
+                            <MenuItem value="1">Admin</MenuItem>
                             <MenuItem value="2">Seller</MenuItem>
+                            <MenuItem value="3">Buyer</MenuItem>
                         </Select>
                     </FormControl>
 

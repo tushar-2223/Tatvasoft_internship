@@ -15,42 +15,18 @@ const EditBooks = () => {
 
     const { id } = useParams();
 
-    const { LoadinContainer, category } = useContext(Contextpage)
+    const { LoadinContainer,category} = useContext(Contextpage)
 
     const navigate = useNavigate();
-    // const [book, getBooks] = useState('');
-
-    // const getBookById = () => {
-    //     var config = {
-    //         method: 'get',
-    //         maxBodyLength: Infinity,
-    //         url: `https://book-e-sell-node-api.vercel.app/api/book/byId?id=${id}`,
-    //         headers: { "Content-Type": "application/json" }
-    //     };
-
-    //     axios(config)
-    //         .then(function (response) {
-    //             getBooks(response.data.result);
-    //             // console.log(response.data.result);
-    //         })
-    //         .catch(function (error) {
-    //             console.log(error);
-    //         });
-    // }
 
     const initialValues = {
         id : id,
         name: "",
         description: "",
         price: 1000,
-        categoryId: 2,
+        categoryId: 6,
         base64image: ""
     };
-
-    useEffect(() => {
-        LoadinContainer();
-        // getBookById();
-    }, [])
 
     const { values, handleBlur, handleChange, handleSubmit } =
         useFormik({
@@ -77,6 +53,11 @@ const EditBooks = () => {
 
             },
         });
+    
+    
+        useEffect(() => {
+            LoadinContainer();
+        }, [])
       
     return (
         <div className="py-8">

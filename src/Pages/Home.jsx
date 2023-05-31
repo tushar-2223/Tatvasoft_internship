@@ -19,24 +19,24 @@ const Home = () => {
   };
 
   const getBooks = () => {
-    setLoading(true);
-    var config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: `https://book-e-sell-node-api.vercel.app/api/book?pageSize=8&pageIndex=${page}&keyword=${search}`,
-      headers: { "Content-Type": "application/json" }
-    };
+      setLoading(true);
+      var config = {
+        method: 'get',
+        maxBodyLength: Infinity,
+        url: `https://book-e-sell-node-api.vercel.app/api/book?pageSize=8&pageIndex=${page}&keyword=${search}`,
+        headers: { "Content-Type": "application/json" }
+      };
 
-    axios(config)
-      .then(function (response) {
-        const result = response.data.result;
-        setProducts(result.items);
-        getApidata(result)
-        setLoading(false);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      axios(config)
+        .then(function (response) {
+          const result = response.data.result;
+          setProducts(result.items);
+          getApidata(result)
+          setLoading(false);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
   }
 
   useEffect(() => {

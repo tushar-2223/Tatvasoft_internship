@@ -13,7 +13,7 @@ const Cart = () => {
       method: 'get',
       maxBodyLength: Infinity,
       url: `https://book-e-sell-node-api.vercel.app/api/cart?userId=${user.id}`,
-      headers: {"Content-Type": "application/json"}
+      headers: { "Content-Type": "application/json" }
     };
 
     axios(config)
@@ -23,7 +23,7 @@ const Cart = () => {
       })
       .catch(function (error) {
         console.log(error);
-    });
+      });
   }
 
   const RemoveItem = (removebookid) => {
@@ -32,22 +32,54 @@ const Cart = () => {
       method: 'delete',
       maxBodyLength: Infinity,
       url: `https://book-e-sell-node-api.vercel.app/api/cart?id=${removebookid}`,
-      headers: {"Content-Type": "application/json"}
+      headers: { "Content-Type": "application/json" }
     };
-    
+
     axios(config)
-    .then(function () {
-      toast.success("item remove successfully")
-      setLoading(false);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+      .then(function () {
+        toast.success("item remove successfully")
+        setLoading(false);
+        CartItem();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  const Updatequenty = (quantity, id, bookId, userId) => {
+    setLoading(true);
+    if (quantity == 0) {
+      RemoveItem(id);
+      CartItem();
+    } else {
+      const updatedata = {
+        id,
+        bookId,
+        userId,
+        quantity
+      }
+      var config = {
+        method: 'put',
+        maxBodyLength: Infinity,
+        url: 'https://book-e-sell-node-api.vercel.app/api/cart',
+        headers: { "Content-Type": "application/json" },
+        data: JSON.stringify(updatedata)
+      };
+
+      axios(config)
+        .then(function () {
+          CartItem();
+          setLoading(false);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   }
 
   useEffect(() => {
     CartItem();
-  },[])
+  }, [])
 
   return (
     <>
@@ -73,11 +105,16 @@ const Cart = () => {
                 <div className="ml-4 flex flex-1 flex-col">
                   <div>
                     <div className="flex justify-between text-base font-medium text-gray-900">
-                      <h3>
+                      <div>
                         <h1>{product.book.name}</h1>
-                      </h3>
+                      </div>
                       <p className="ml-40">Rs.{product.book.price}</p>
                     </div>
+                  </div>
+                  <div className='flex items-center'>
+                    <button className="p-2 bg-red-400/60" onClick={() => product.quantity > 0 ? Updatequenty(product.quantity - 1, product.id, product.bookId, product.userId) : null}>-</button>
+                    <h1 className="p-2"> {product.quantity} </h1>
+                    <button className="p-2 bg-green-400" onClick={() => Updatequenty(product.quantity + 1, product.id, product.bookId, product.userId)}>+</button>
                   </div>
                   <div className="flex flex-1 items-end justify-between text-sm">
                     <p className="text-gray-500">Qty {product.quantity}</p>
@@ -99,7 +136,9 @@ const Cart = () => {
 
           <div className="flex justify-between text-base font-medium text-gray-900">
             <p>Total items : {products.length}</p>
-            <p>(MRP) Rs. 1000</p>
+            <p>(MRP) Rs. {products.reduce((total, value) => {
+              return total + value.book.price * value.quantity;
+            }, 0)}</p>
           </div>
           <div className="mt-6">
             <a

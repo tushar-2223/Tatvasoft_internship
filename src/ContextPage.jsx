@@ -1,14 +1,11 @@
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { toast } from "react-toastify";
-
 
 const Contextpage = createContext();
 
 export function ContextProvider({ children }) {
 
-    const navigate = useNavigate();
     const [data, setData] = useState(0);
     const [logindata, setLogindata] = useState({});
     const [user, setUser] = useState('');
@@ -112,10 +109,8 @@ export function ContextProvider({ children }) {
             })
             .catch(function (error) {
                 console.log(error);
-            });
+           });
     };
-
-
 
     useEffect(() => {
         if (logindata.email) {
@@ -144,7 +139,7 @@ export function ContextProvider({ children }) {
             setCategory,
             AddCart,
             products,
-            setProduct
+            setProduct,
         }}>
             {children}
         </Contextpage.Provider>

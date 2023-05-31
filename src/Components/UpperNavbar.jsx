@@ -6,13 +6,7 @@ import Contextpage from '../ContextPage';
 
 const UpperNavbar = () => {
 
-    const {user,products} = useContext(Contextpage)
-
-    // useEffect(() => {
-    //     if (logindata.email) {
-    //         getData();
-    //     }
-    // }, [logindata.email])
+    const { user, products } = useContext(Contextpage)
 
     return (
         <>
@@ -41,8 +35,15 @@ const UpperNavbar = () => {
                                 <>
                                     <hr className='w-[2px] bg-red-500 h-8' />
                                     <Link to="/books" className='authbtn'>Books</Link>
-                                </>
-                            : null}
+                                </> :
+                                user.roleId == 1 ?
+                                    <>
+                                        <hr className='w-[2px] bg-red-500 h-8' />
+                                        <Link to="/books" className='authbtn'>Books</Link>
+                                        <hr className='w-[2px] bg-red-500 h-8' />
+                                        <Link to="/category" className='authbtn'>Category</Link>
+                                    </>
+                                    : null}
                         </>
                     }
 
@@ -54,7 +55,7 @@ const UpperNavbar = () => {
                     </Link>
 
                     <div className={`${user ? 'visible' : 'invisible'} flex items-center font-semibold`}>
-                        <h1 className='bg-blue-200 px-2 py-1'>{user ? user.firstName +" "+ user.lastName : null}</h1>
+                        <h1 className='bg-blue-200 px-2 py-1'>{user ? user.firstName + " " + user.lastName : null}</h1>
 
                         <div className='bg-red-300/60 mx-2 px-2 py-1 hover:text-white hover:bg-red-400 border-2 border-red-600 rounded-lg cursor-pointer' onClick={() => localStorage.removeItem("user")}>Logout</div>
                     </div>

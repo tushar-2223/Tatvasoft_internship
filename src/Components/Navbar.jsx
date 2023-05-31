@@ -2,30 +2,36 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AiOutlineSearch } from "react-icons/ai";
 import Contextpage from '../ContextPage';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
-    const { setLoading,AddCart} = useContext(Contextpage);
+    const { setLoading,AddCart,user} = useContext(Contextpage);
 
     const [searchbar, setSearchbar] = useState('');
     const [searchvalue, setSearchValue] = useState([]);
 
     const handleClick = () => {
-        setLoading(true)
-        var config = {
-            method: 'get',
-            maxBodyLength: Infinity,
-            url: `https://book-e-sell-node-api.vercel.app/api/book/search?keyword=${searchbar}`,
-            headers: { "Content-Type": "application/json" }
-        };
+        if (user) {
+            setLoading(true)
+            var config = {
+                method: 'get',
+                maxBodyLength: Infinity,
+                url: `https://book-e-sell-node-api.vercel.app/api/book/search?keyword=${searchbar}`,
+                headers: { "Content-Type": "application/json" }
+            };
 
-        axios(config)
-            .then(function (response) {
-                setSearchValue(response.data.result);
-                setLoading(false);
-            })
-            .catch(function (error) {
-                console.log(error);
-        });
+            axios(config)
+                .then(function (response) {
+                    setSearchValue(response.data.result);
+                    setLoading(false);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        } else {
+            setSearchbar('')
+            toast.warning('The Search is operational when a user is authenticated.')
+        }
     }
 
     useEffect(() => {
