@@ -6,7 +6,7 @@ import Contextpage from '../ContextPage';
 
 const UpperNavbar = () => {
 
-    const {user} = useContext(Contextpage)
+    const {user,products} = useContext(Contextpage)
 
     // useEffect(() => {
     //     if (logindata.email) {
@@ -47,9 +47,9 @@ const UpperNavbar = () => {
                     }
 
                     {/* cart */}
-                    <Link className='authbtn cart'>
+                    <Link to="/cart" className='authbtn cart'>
                         <HiShoppingCart color='red' size={20} />
-                        <h4>0</h4>
+                        <h4>{products.length}</h4>
                         <h4>Cart</h4>
                     </Link>
 

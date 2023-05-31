@@ -3,9 +3,10 @@ import Contextpage from '../ContextPage';
 import axios from "axios";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import dummyimage from '../assets/dummyimage.jpg'
 
 const Home = () => {
-  const { setLoading } = useContext(Contextpage);
+  const { setLoading,AddCart} = useContext(Contextpage);
   // get products items
   const [products, setProducts] = useState([]);
   // get api info
@@ -18,13 +19,11 @@ const Home = () => {
   };
 
   const getBooks = () => {
-
     setLoading(true);
-
     var config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: `https://book-e-sell-node-api.vercel.app/api/book?pageSize=4&pageIndex=${page}&keyword=${search}`,
+      url: `https://book-e-sell-node-api.vercel.app/api/book?pageSize=8&pageIndex=${page}&keyword=${search}`,
       headers: { "Content-Type": "application/json" }
     };
 
@@ -67,8 +66,8 @@ const Home = () => {
             <div className="group" key={product.id}>
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                 <img
-                  src={product.base64image}
-                  alt="img"
+                  src={product.base64image ? product.base64image : dummyimage}
+                  alt='img'
                   className="h-60 w-full object-cover object-center group-hover:opacity-75"
                 />
               </div>
@@ -76,7 +75,7 @@ const Home = () => {
               <h1 className="text-blue-500">{product.category}</h1>
               <p className="mt-1 text-lg font-medium text-gray-900">Rs. {product.price}</p>
 
-              <button className='bg-red-200 w-full p-2 my-2 rounded-lg'>Add to Cart</button>
+              <button className='bg-red-200 w-full p-2 my-2 rounded-lg' onClick={() => AddCart(product.id)}>Add to Cart</button>
             </div>
           ))}
         </div>

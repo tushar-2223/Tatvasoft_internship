@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect, useRef } from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -18,37 +18,39 @@ const EditBooks = () => {
     const { LoadinContainer, category } = useContext(Contextpage)
 
     const navigate = useNavigate();
+    // const [book, getBooks] = useState('');
 
-    const [book, getBooks] = useState({});
+    // const getBookById = () => {
+    //     var config = {
+    //         method: 'get',
+    //         maxBodyLength: Infinity,
+    //         url: `https://book-e-sell-node-api.vercel.app/api/book/byId?id=${id}`,
+    //         headers: { "Content-Type": "application/json" }
+    //     };
 
-    console.log(book.name)
-
-    const getBookById = () => {
-        var config = {
-            method: 'get',
-            maxBodyLength: Infinity,
-            url: `https://book-e-sell-node-api.vercel.app/api/book/byId?id=${id}`,
-            headers: { "Content-Type": "application/json" }
-        };
-
-        axios(config)
-            .then(function (response) {
-                getBooks(response.data.result);
-                // console.log(response.data.result);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
-
+    //     axios(config)
+    //         .then(function (response) {
+    //             getBooks(response.data.result);
+    //             // console.log(response.data.result);
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //         });
+    // }
 
     const initialValues = {
+        id : id,
         name: "",
         description: "",
-        price: book.price,
+        price: 1000,
         categoryId: 2,
         base64image: ""
     };
+
+    useEffect(() => {
+        LoadinContainer();
+        // getBookById();
+    }, [])
 
     const { values, handleBlur, handleChange, handleSubmit } =
         useFormik({
@@ -75,12 +77,7 @@ const EditBooks = () => {
 
             },
         });
-
-    useEffect(() => {
-        LoadinContainer();
-        getBookById();
-    }, [])
-
+      
     return (
         <div className="py-8">
             <div className="flex justify-center flex-col items-center p-4">

@@ -14,6 +14,7 @@ import UpdateProfile from "./Pages/UpdateProfile"
 import Error from "./Pages/Error"
 import AddBooks from "./Pages/AddBooks"
 import EditBooks from "./Pages/EditBooks"
+import Cart from "./Pages/Cart"
 
 function App() {
 
@@ -46,7 +47,8 @@ function App() {
         <Route path="books" element={<Books />} />
         <Route path="updateprofile" element={user ? <UpdateProfile /> : <Navigate to="/" />} />
         <Route path="addbook" element={<AddBooks />} />
-        <Route path="editbook/:id" element={<EditBooks/>} />
+        <Route path="editbook/:id" element={<EditBooks />} />
+        <Route path="cart" element={user ? <Cart/> : <Navigate to="/" />}/>
         <Route path="*" element={<Error />} />
       </Routes>
 
