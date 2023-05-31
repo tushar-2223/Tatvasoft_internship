@@ -3,9 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { toast } from "react-toastify";
 
-
-const Contextpage = createContext();
-
 export function ContextProvider({ children }) {
 
     const navigate = useNavigate();
@@ -128,7 +125,6 @@ export function ContextProvider({ children }) {
 
 
     return (
-
         <Contextpage.Provider value={{
             data,
             setData,
