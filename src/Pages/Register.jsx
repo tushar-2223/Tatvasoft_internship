@@ -63,8 +63,6 @@ const Register = () => {
         LoadinContainer();
     }, [])
     
-
-
     // <========== before Formik =============>
 
     // const [user, setUser] = useState({
@@ -83,7 +81,6 @@ const Register = () => {
 
     // const SubmitForm = () => {
     //     console.log(user);
-
     // }
 
 
@@ -163,7 +160,7 @@ const Register = () => {
                             onBlur={handleBlur}
                             name='roleId'
                         >
-                            <MenuItem value="1">Admin</MenuItem>
+                            {/* <MenuItem value="1">Admin</MenuItem> */}
                             <MenuItem value="2">Seller</MenuItem>
                             <MenuItem value="3">Buyer</MenuItem>
                         </Select>

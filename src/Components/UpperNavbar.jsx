@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import tatvasoftlogo from '../assets/Tatvasoft-Logo.jpg'
 import { Link } from 'react-router-dom'
 import { HiShoppingCart } from "react-icons/hi";
@@ -6,7 +6,11 @@ import Contextpage from '../ContextPage';
 
 const UpperNavbar = () => {
 
-    const { user, products } = useContext(Contextpage)
+    const { user, products} = useContext(Contextpage)
+    
+    const Logout = () => {
+        localStorage.removeItem("user")
+    }
 
     return (
         <>
@@ -57,7 +61,7 @@ const UpperNavbar = () => {
                     <div className={`${user ? 'visible' : 'invisible'} flex items-center font-semibold`}>
                         <h1 className='bg-blue-200 px-2 py-1'>{user ? user.firstName + " " + user.lastName : null}</h1>
 
-                        <div className='bg-red-300/60 mx-2 px-2 py-1 hover:text-white hover:bg-red-400 border-2 border-red-600 rounded-lg cursor-pointer' onClick={() => localStorage.removeItem("user")}>Logout</div>
+                        <div className='bg-red-300/60 mx-2 px-2 py-1 hover:text-white hover:bg-red-400 border-2 border-red-600 rounded-lg cursor-pointer' onClick={Logout}>Logout</div>
                     </div>
 
                 </div>

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -148,6 +147,3 @@ export function ContextProvider({ children }) {
 }
 
 export default Contextpage
-=======
-
->>>>>>> b62fc72c306044d7d046bdb032b132ba4bea5890

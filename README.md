@@ -1,10 +1,9 @@
-# Tatvasoft_internship
+# Tatvasoft Internship (15 Day)
 
-## Current Status of repo
+* Design and develop an E-cell Book Project with role-based authentication, catering to admins, sellers, and buyers. The system should allow users to search for books, add them to their cart, select books based on categories, and provide the functionality to edit, update, and delete books.
 
-Last Update Date : 29 - 05 - 2023
-
-* Build Home Page , Book Page ,Role Based Auth
+## Tech Stack 
+* React JS , TailwindCss , Reacttoaster , React Hooks
 
 ## Development
 

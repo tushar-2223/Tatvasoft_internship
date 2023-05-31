@@ -1,4 +1,4 @@
-import React, { useState ,useContext,useEffect} from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +13,7 @@ import axios from 'axios';
 import Contextpage from '../ContextPage';
 
 const UpdateProfile = () => {
-    const { LoadinContainer , user} = useContext(Contextpage)
+    const { LoadinContainer, user } = useContext(Contextpage)
 
     const navigate = useNavigate();
     // <=========== form handling using formik =================>
@@ -23,7 +23,7 @@ const UpdateProfile = () => {
         lastName: user.lastName,
         email: user.email,
         roleId: user.roleId,
-        role : user.role,
+        role: user.role,
         password: ""
     });
 
@@ -58,7 +58,7 @@ const UpdateProfile = () => {
     useEffect(() => {
         LoadinContainer();
     }, [])
-    
+
 
 
     return (
@@ -126,21 +126,25 @@ const UpdateProfile = () => {
                         ) : null}
                     </div>
 
-                    <FormControl >
-                        <InputLabel id="demo-simple-select-autowidth-label">Role</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-autowidth-label"
-                            id="demo-simple-select-autowidth"
-                            label="roles"
-                            value={values.roleId}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            name='roleId'
-                        >
-                            <MenuItem value="3">Buyer</MenuItem>
-                            <MenuItem value="2">Seller</MenuItem>
-                        </Select>
-                    </FormControl>
+                    {user.roleId == 1 ? null : <>
+                        <FormControl >
+                            <InputLabel id="demo-simple-select-autowidth-label">Role</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-autowidth-label"
+                                id="demo-simple-select-autowidth"
+                                label="roles"
+                                value={values.roleId}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                name='roleId'
+                            >
+                                {/* <MenuItem value="1">Admin</MenuItem> */}
+                                <MenuItem value="3">Buyer</MenuItem>
+                                <MenuItem value="2">Seller</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </>}
+
 
 
                     <div className='flex gap-5 flex-wrap'>
