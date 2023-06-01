@@ -36,7 +36,7 @@ function Category() {
         //     method: 'delete',
         //    maxBodyLength: Infinity,
         //     url: `https://book-e-sell-node-api.vercel.app/api/category?id=${deleteid}`,
-        //     headers: { }
+        //     headers: {"Content-Type": "application/json" }
         //   };
         //   axios(config)
         //   .then(function () {
@@ -45,9 +45,10 @@ function Category() {
         //       setLoading(false);
         //   })
         //   .catch(function (error) {
-        //       toast.error(error);
-        //   });
-        toast.success("Category Delete Successfully");
+        //       toast.error("Error");
+        //       console.log(error);
+        // });
+        console.log("nai chal raha he");
     }
 
     useEffect(() => {

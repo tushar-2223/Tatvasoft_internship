@@ -35,20 +35,20 @@ const UpperNavbar = () => {
                             <Link to="/register" className='authbtn'>Register</Link>
                         </> :
                         <>
-                            <Link to="/updateprofile" className='authbtn'>Update Profile</Link>
+                            {user.roleId == 1 ? null : <Link to="/updateprofile" className='authbtn'>Update Profile</Link>}
                             {user.roleId == 2 ?
                                 <>
                                     <hr className='w-[2px] bg-red-500 h-8' />
                                     <Link to="/books" className='authbtn'>Books</Link>
                                 </> :
                                 user.roleId == 1 ?
-                                    <>
-                                        <hr className='w-[2px] bg-red-500 h-8' />
-                                        <Link to="/books" className='authbtn'>Books</Link>
-                                        <hr className='w-[2px] bg-red-500 h-8' />
-                                        <Link to="/category" className='authbtn'>Category</Link>
-                                    </>
-                                    : null}
+                                <>
+                                    <hr className='w-[2px] bg-red-500 h-8' />
+                                    <Link to="/books" className='authbtn'>Books</Link>
+                                    <hr className='w-[2px] bg-red-500 h-8' />
+                                    <Link to="/category" className='authbtn'>Category</Link>
+                                </>
+                                : null}
                         </>
                     }
 

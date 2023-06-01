@@ -50,7 +50,6 @@ const UpdateProfile = () => {
                     });
 
                 action.resetForm();
-
             },
         });
     console.log(errors);

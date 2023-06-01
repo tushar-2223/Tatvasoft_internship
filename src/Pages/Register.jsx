@@ -174,6 +174,7 @@ const Register = () => {
                                 label="Password"
                                 variant="outlined"
                                 name='password'
+                                type='password'
                                 className='w-full'
                                 autoComplete='off'
                                 value={values.password}
@@ -190,6 +191,7 @@ const Register = () => {
                                 id="outlined-basic"
                                 label="Confirm Password"
                                 variant="outlined"
+                                type='password'
                                 // name="cpassword"
                                 className='w-full'
                                 autoComplete="off"
