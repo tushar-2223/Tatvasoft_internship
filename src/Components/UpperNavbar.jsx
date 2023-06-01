@@ -6,8 +6,8 @@ import Contextpage from '../ContextPage';
 
 const UpperNavbar = () => {
 
-    const { user, products} = useContext(Contextpage)
-    
+    const { user, products } = useContext(Contextpage)
+
     const Logout = () => {
         localStorage.removeItem("user");
         window.location.reload(false);
@@ -35,20 +35,24 @@ const UpperNavbar = () => {
                             <Link to="/register" className='authbtn'>Register</Link>
                         </> :
                         <>
-                            {user.roleId == 1 ? null : <Link to="/updateprofile" className='authbtn'>Update Profile</Link>}
+                            {user.roleId == 1 ? null :
+                                <>
+                                    <Link to="/updateprofile" className='authbtn'>Update Profile</Link>
+                                    <hr className='w-[2px] bg-red-500 h-8' />
+                                </>
+                            }
                             {user.roleId == 2 ?
                                 <>
-                                    <hr className='w-[2px] bg-red-500 h-8' />
                                     <Link to="/books" className='authbtn'>Books</Link>
                                 </> :
                                 user.roleId == 1 ?
-                                <>
-                                    <hr className='w-[2px] bg-red-500 h-8' />
-                                    <Link to="/books" className='authbtn'>Books</Link>
-                                    <hr className='w-[2px] bg-red-500 h-8' />
-                                    <Link to="/category" className='authbtn'>Category</Link>
-                                </>
-                                : null}
+                                    <>
+                                        <hr className='w-[2px] bg-red-500 h-8' />
+                                        <Link to="/books" className='authbtn'>Books</Link>
+                                        <hr className='w-[2px] bg-red-500 h-8' />
+                                        <Link to="/category" className='authbtn'>Category</Link>
+                                    </>
+                                    : null}
                         </>
                     }
 
