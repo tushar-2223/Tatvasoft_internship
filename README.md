@@ -5,6 +5,21 @@
 ## Tech Stack 
 * React JS , TailwindCss , Reacttoaster , React Hooks
 
+## admin login
+
+email : keval@admin.com
+pass : 12345
+
+## seller ogin
+
+email : seller123@gmail.com
+pass : Se123
+
+## Buyer ogin
+
+email : buyer123@gmail.com
+pass : Bu123
+
 ## Development
 
 To get a local copy of the code, clone it using git:
