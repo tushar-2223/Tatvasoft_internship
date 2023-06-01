@@ -46,8 +46,6 @@ const AddCategory = () => {
     LoadinContainer();
   }, [])
 
-
-
   return (
     <div className="py-8">
       <div className="flex justify-center flex-col items-center p-4">

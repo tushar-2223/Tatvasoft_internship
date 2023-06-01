@@ -9,7 +9,8 @@ const UpperNavbar = () => {
     const { user, products} = useContext(Contextpage)
     
     const Logout = () => {
-        localStorage.removeItem("user")
+        localStorage.removeItem("user");
+        window.location.reload(false);
     }
 
     return (

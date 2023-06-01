@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 import dummyimage from '../assets/dummyimage.jpg'
 
 const Home = () => {
-  const { setLoading,AddCart} = useContext(Contextpage);
+  const { setLoading, AddCart } = useContext(Contextpage);
   // get products items
   const [products, setProducts] = useState([]);
   // get api info
@@ -17,31 +17,40 @@ const Home = () => {
   const handleChange = (event, value) => {
     setPage(value);
   };
+  const FilterPage = (e) => {
+    var item = e.target.value;
+    // console.log(item);
+    if (item === '1') {
+      setProducts([...products].sort((a, b) => a.name.localeCompare(b.name)));
+    } else if (item === '2') {
+      setProducts([...products].sort((a, b) => b.name.localeCompare(a.name)));
+    }
+  };
 
   const getBooks = () => {
-      setLoading(true);
-      var config = {
-        method: 'get',
-        maxBodyLength: Infinity,
-        url: `https://book-e-sell-node-api.vercel.app/api/book?pageSize=8&pageIndex=${page}&keyword=${search}`,
-        headers: { "Content-Type": "application/json" }
-      };
+    setLoading(true);
+    var config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: `https://book-e-sell-node-api.vercel.app/api/book?pageSize=8&pageIndex=${page}&keyword=${search}`,
+      headers: { "Content-Type": "application/json" }
+    };
 
-      axios(config)
-        .then(function (response) {
-          const result = response.data.result;
-          setProducts(result.items);
-          getApidata(result)
-          setLoading(false);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+    axios(config)
+      .then(function (response) {
+        const result = response.data.result;
+        setProducts(result.items);
+        getApidata(result)
+        setLoading(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   useEffect(() => {
     getBooks();
-  }, [page,search])
+  }, [page, search])
 
   return (
     <>
@@ -49,16 +58,23 @@ const Home = () => {
         <h1 className="text-4xl font-bold text-center p-4">Products</h1>
         <div className="w-24 h-1 bg-red-400 rounded-full"></div>
       </div>
-      
+
       <div className="mx-auto max-w-2xl px-4 py-6 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8">
 
         {/* product navbar */}
         <div className="mb-4 w-full flex justify-between items-center">
           <h1 className="font-semibold text-xl">Total - {apidata.totalItems} items</h1>
 
-          <input type="text" className="bg-gray-100 p-2 outline-none border-2 rounded-xl border-gray-300" placeholder="Search..."
-            onChange={(e) => setSearch(e.target.value)}
-          />
+          <div>
+            <input type="text" className="bg-gray-100 p-2 outline-none border-2 rounded-xl border-gray-300" placeholder="Search..."
+              onChange={(e) => setSearch(e.target.value)}
+            />
+
+            <select name="sortby" placeholder="Sort By" className="bg-gray-100 p-2 outline-none border-2 rounded-xl border-gray-300 ml-10 w-40" onChange={(e) => FilterPage(e)}>
+              <option value="1">a - Z</option>
+              <option value="2">z - A</option>
+            </select>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
