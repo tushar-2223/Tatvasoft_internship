@@ -7,8 +7,8 @@
 
 ## admin login
 
-email : keval@admin.com
-pass : 12345
+email : admin@tatvasoft.com
+pass : hhhhh
 
 ## seller ogin
 
