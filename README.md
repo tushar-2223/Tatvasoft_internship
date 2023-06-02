@@ -4,11 +4,11 @@
 
 ## Tech Stack 
 * React JS , TailwindCss , Reacttoaster , React Hooks
-
+<!-- 
 ## admin login
 
-email : keval@admin.com
-pass : 12345
+email : admin@tatvasoft.com
+pass : admin@123 -->
 
 ## seller ogin
 
