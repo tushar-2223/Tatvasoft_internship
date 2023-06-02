@@ -5,12 +5,12 @@
 ## Tech Stack 
 * React JS , TailwindCss , Reacttoaster , React Hooks
 
-## seller ogin
+## seller Login
 
 email : seller123@gmail.com
 pass : Se123
 
-## Buyer ogin
+## Buyer Login
 
 email : buyer123@gmail.com
 pass : Bu123
