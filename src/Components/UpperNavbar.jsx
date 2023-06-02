@@ -51,7 +51,7 @@ const UpperNavbar = () => {
                                         <hr className='w-[2px] bg-red-500 h-8' />
                                         <Link to="/category" className='authbtn'>Category</Link>
                                     </>
-                                    : null}
+                                : null}
                         </>
                     }
 

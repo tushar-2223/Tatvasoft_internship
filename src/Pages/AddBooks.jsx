@@ -136,7 +136,6 @@ const AddBooks = () => {
           />
           <p className='text-green-600'>Copy image address and paste it here</p>
 
-
           <Button type='submit' variant="contained">Add Book</Button>
         </div>
       </form>

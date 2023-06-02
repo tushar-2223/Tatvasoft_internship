@@ -7,53 +7,27 @@ import { toast } from 'react-toastify';
 
 function Category() {
 
-    const { setLoading } = useContext(Contextpage);
+    const { category, setLoading } = useContext(Contextpage);
 
-    const [getcategory, setCategory] = useState([])
-
-    const getAllBookdata = () => {
+    const DeleteCategory = (deleteid) => {
         setLoading(true);
         var config = {
-            method: 'get',
+            method: 'delete',
             maxBodyLength: Infinity,
-            url: `https://book-e-sell-node-api.vercel.app/api/category/all`,
+            url: `https://book-e-sell-node-api.vercel.app/api/category?id=${deleteid}`,
             headers: { "Content-Type": "application/json" }
         };
-
         axios(config)
-            .then(function (response) {
-                setCategory(response.data.result);
+            .then(function () {
+                toast.success("Category Delete Successfully");
+                getAllBookdata();
                 setLoading(false);
             })
             .catch(function (error) {
+                toast.error("Error");
                 console.log(error);
             });
     }
-
-    const DeleteCategory = (deleteid) => {
-        // setLoading(true);
-        // var config = {
-        //     method: 'delete',
-        //    maxBodyLength: Infinity,
-        //     url: `https://book-e-sell-node-api.vercel.app/api/category?id=${deleteid}`,
-        //     headers: {"Content-Type": "application/json" }
-        //   };
-        //   axios(config)
-        //   .then(function () {
-        //       toast.success("Category Delete Successfully");
-        //       getAllBookdata();
-        //       setLoading(false);
-        //   })
-        //   .catch(function (error) {
-        //       toast.error("Error");
-        //       console.log(error);
-        // });
-        console.log("nai chal raha he");
-    }
-
-    useEffect(() => {
-        getAllBookdata();
-    }, [])
 
     const columns = [
         {
@@ -97,7 +71,7 @@ function Category() {
 
                 <div className="w-auto m-10">
                     <DataGrid
-                        rows={getcategory}
+                        rows={category}
                         columns={columns}
                         initialState={{
                             pagination: {

@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 import dummyimage from '../assets/dummyimage.jpg'
 
 const Home = () => {
-  const { setLoading, AddCart } = useContext(Contextpage);
+  const { setLoading, AddCart} = useContext(Contextpage);
   // get products items
   const [products, setProducts] = useState([]);
   // get api info
@@ -16,15 +16,6 @@ const Home = () => {
 
   const handleChange = (event, value) => {
     setPage(value);
-  };
-  const FilterPage = (e) => {
-    var item = e.target.value;
-    // console.log(item);
-    if (item === '1') {
-      setProducts([...products].sort((a, b) => a.name.localeCompare(b.name)));
-    } else if (item === '2') {
-      setProducts([...products].sort((a, b) => b.name.localeCompare(a.name)));
-    }
   };
 
   const getBooks = () => {
@@ -52,6 +43,19 @@ const Home = () => {
     getBooks();
   }, [page, search])
 
+
+  // filter products logic
+
+  const FilterAtoZ = (e) => {
+    var item = e.target.value;
+    // console.log(item);
+    if (item === '1') {
+      setProducts([...products].sort((a, b) => a.name.localeCompare(b.name)));
+    } else if (item === '2') {
+      setProducts([...products].sort((a, b) => b.name.localeCompare(a.name)));
+    }
+  };
+
   return (
     <>
       <div className="flex justify-center flex-col items-center m-2">
@@ -60,7 +64,6 @@ const Home = () => {
       </div>
 
       <div className="mx-auto max-w-2xl px-4 py-6 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8">
-
         {/* product navbar */}
         <div className="mb-4 w-full flex justify-between items-center">
           <h1 className="font-semibold text-xl">Total - {apidata.totalItems} items</h1>
@@ -70,7 +73,7 @@ const Home = () => {
               onChange={(e) => setSearch(e.target.value)}
             />
 
-            <select name="sortby" placeholder="Sort By" className="bg-gray-100 p-2 outline-none border-2 rounded-xl border-gray-300 ml-10 w-40" onChange={(e) => FilterPage(e)}>
+            <select name="sortby" placeholder="Sort By" className="bg-gray-100 p-2 outline-none border-2 rounded-xl border-gray-300 ml-10 w-40" onChange={(e) => FilterAtoZ(e)}>
               <option value="1">a - Z</option>
               <option value="2">z - A</option>
             </select>

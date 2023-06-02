@@ -51,6 +51,7 @@ export function ContextProvider({ children }) {
     }
 
     const getCategory = () => {
+        setLoading(true);
         var config = {
             method: 'get',
             maxBodyLength: Infinity,
@@ -61,10 +62,11 @@ export function ContextProvider({ children }) {
         axios(config)
             .then(function (response) {
                 setCategory(response.data.result);
+                setLoading(false)
             })
             .catch(function (error) {
                 console.log(error);
-            });
+        });
     }
 
     // Cart
@@ -116,9 +118,8 @@ export function ContextProvider({ children }) {
         if (logindata.email) {
             getData();
         }
-
-        getlocalstoragedata();
         getCategory();
+        getlocalstoragedata();
     }, [logindata.email]);
 
 
@@ -139,7 +140,7 @@ export function ContextProvider({ children }) {
             setCategory,
             AddCart,
             products,
-            setProduct,
+            setProduct
         }}>
             {children}
         </Contextpage.Provider>

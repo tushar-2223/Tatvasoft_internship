@@ -31,7 +31,22 @@ function Books() {
   }
 
   const deleteBook = (bookid) => {
-    toast.success(`${bookid} Book Delete successfully`)
+    var config = {
+      method: 'delete',
+      maxBodyLength: Infinity,
+      url: `https://book-e-sell-node-api.vercel.app/api/book?id=${bookid}`,
+      headers: {}
+    };
+
+    axios(config)
+    .then(function () {
+      toast.success("Book Delete successfully")
+      getAllBookdata();
+    })
+    .catch(function (error) {
+      console.log(error);
+      toast.error("error")
+    });
   }
 
   useEffect(() => {
