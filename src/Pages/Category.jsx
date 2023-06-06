@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 function Category() {
 
-    const { category, setLoading } = useContext(Contextpage);
+    const { category, setLoading ,getCategory} = useContext(Contextpage);
 
     const DeleteCategory = (deleteid) => {
         setLoading(true);
@@ -20,7 +20,7 @@ function Category() {
         axios(config)
             .then(function () {
                 toast.success("Category Delete Successfully");
-                getAllBookdata();
+                getCategory();
                 setLoading(false);
             })
             .catch(function (error) {

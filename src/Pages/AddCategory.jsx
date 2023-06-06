@@ -12,7 +12,7 @@ const initialValues = {
 };
 
 const AddCategory = () => {
-  const { LoadinContainer } = useContext(Contextpage)
+  const { LoadinContainer,getCategory} = useContext(Contextpage)
 
   const navigate = useNavigate();
 
@@ -30,7 +30,8 @@ const AddCategory = () => {
 
         axios(config)
           .then(function () {
-            toast.success("Book added successfully");
+            toast.success("Category added successfully");
+            getCategory();
             navigate("/category");
           })
           .catch(function () {
@@ -70,7 +71,7 @@ const AddCategory = () => {
             onBlur={handleBlur}
           />
 
-          <Button type='submit' variant="contained">Add Book</Button>
+          <Button type='submit' variant="contained">Add Category</Button>
         </div>
       </form>
 

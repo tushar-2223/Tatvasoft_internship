@@ -40,6 +40,7 @@ const Login = () => {
         })
         .catch(function (error) {
           toast.error(error);
+          toast.error("User invalid")
         });
     
         action.resetForm();

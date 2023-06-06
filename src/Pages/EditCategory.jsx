@@ -12,7 +12,7 @@ const EditCategory = () => {
     const { id } = useParams();
 
     const { LoadinContainer } = useContext(Contextpage);
-    const [getCategory, setCategory] = useState([]);
+    const [getCategoryid, setCategory] = useState([]);
 
     const navigate = useNavigate();
 
@@ -79,7 +79,7 @@ const EditCategory = () => {
             <form method='POST' onSubmit={handleSubmit} className='flex justify-center items-center gap-5'>
                 <div className='border-2 rounded-xl p-5 flex flex-col gap-5 shadow-lg w-[40rem]'>
 
-                    <h1>Current Category : {getCategory.name}</h1>
+                    <h1>Current Category : {getCategoryid.name}</h1>
 
                     <TextField
                         type='text'
