@@ -11,7 +11,7 @@ const EditCategory = () => {
 
     const { id } = useParams();
 
-    const { LoadinContainer } = useContext(Contextpage);
+    const { LoadinContainer,getCategory } = useContext(Contextpage);
     const [getCategoryid, setCategory] = useState([]);
 
     const navigate = useNavigate();
@@ -58,6 +58,7 @@ const EditCategory = () => {
                 axios(config)
                     .then(function () {
                         toast.success("Category Edit successfully");
+                        getCategory();
                         navigate("/category");
                     })
                     .catch(function () {

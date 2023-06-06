@@ -12,7 +12,7 @@ const initialValues = {
 };
 
 const AddCategory = () => {
-  const { LoadinContainer,getCategory} = useContext(Contextpage)
+  const {LoadinContainer,getCategory} = useContext(Contextpage)
 
   const navigate = useNavigate();
 

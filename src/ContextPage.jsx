@@ -140,7 +140,8 @@ export function ContextProvider({ children }) {
             setCategory,
             AddCart,
             products,
-            setProduct
+            setProduct,
+            getCategory 
         }}>
             {children}
         </Contextpage.Provider>
