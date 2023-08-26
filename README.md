@@ -5,6 +5,11 @@
 ## Tech Stack 
 * React JS , TailwindCss , Reacttoaster , React Hooks
 
+## API Link
+```
+https://documenter.getpostman.com/view/14127639/2s93ecwVzP
+```
+
 ## seller Login
 
 email : seller123@gmail.com
