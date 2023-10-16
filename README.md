@@ -12,12 +12,12 @@ https://documenter.getpostman.com/view/14127639/2s93ecwVzP
 
 ## seller Login
 
-email : seller123@gmail.com
+email : tusharseller@gmail.com
 pass : Se123
 
 ## Buyer Login
 
-email : buyer123@gmail.com
+email : tusharbuyer@gmail.com
 pass : Bu123
 
 ## Development
